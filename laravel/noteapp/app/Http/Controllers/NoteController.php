@@ -33,7 +33,7 @@ class NoteController extends Controller
     }
 
     public function edit(Note $note) {
-        return view('notes.edit', compact($note));
+        return view('notes.edit', compact('note'));
     }
 
     public function update(Request $request, Note $note) {
@@ -47,5 +47,13 @@ class NoteController extends Controller
 
         //redirect to index
         return redirect()->route('notes.index')->with(['success' => 'Data Berhasil Diubah!']);
+    }
+
+    public function destroy(Note $note) {
+        $note->delete();
+
+        //redirect to index
+        return redirect()->route('notes.index')->with(['success' => 'Data Berhasil Dihapus!']);
+
     }
 }
